@@ -1,14 +1,17 @@
-import 'controllers'
-import 'stylesheets/application.scss'
-import 'channels'
-import Rails from '@rails/ujs'
-Rails.start()
+import "controllers";
+import "stylesheets/application.scss";
+import "channels";
+import consumer from "channels/consumer";
+import Rails from "@rails/ujs";
+Rails.start();
 
-import CableReady from 'cable_ready'
-import { processElements } from 'cable_ready/javascript/utils'
+import CableReady from "cable_ready";
+import { processElements } from "cable_ready/javascript/utils";
 
 CableReady.DOMOperations.jazzHands = operation => {
   processElements(operation, element => {
-    console.log('Jazz hands!', element)
-  })
-}
+    console.log("Jazz hands!", element);
+  });
+};
+
+CableReady.initialize({ consumer });
